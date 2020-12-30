@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Data files to ignore
+*.csv
+*.pdf
+/FEC_dataset
+/FEC_dataset/faceexp-comparison-data-test-public.csv
+/FEC_dataset/faceexp-comparison-data-train-public.csv
