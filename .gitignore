@@ -134,3 +134,4 @@ dmypy.json
 /FEC_dataset
 /FEC_dataset/faceexp-comparison-data-test-public.csv
 /FEC_dataset/faceexp-comparison-data-train-public.csv
+.vscode/settings.json
