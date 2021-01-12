@@ -32,4 +32,4 @@ I chose to use the Haar-Cascade Classifiers found in OpenCV to be able to reliab
 ![Example_CNN](Images/Face-Recognition-CNN-Architecture.png)
 
 # Results
-![Image](link)
+![Image](accuracy.png)
