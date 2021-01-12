@@ -7,16 +7,14 @@ import cv2
 import os
 from tqdm import tqdm
 
+## Original Spread of Emotions
 # different = ['Peace', 'Affection', 'Esteem', 'Anticipation', 'Engagement',
 #              'Confidence', 'Happiness', 'Pleasure', 'Excitement','Surprise',
 #              'Sympathy', 'Doubt/Confusion', 'Disconnection', 'Fatigue', 'Embarrassment',
 #              'Yearning', 'Disapproval', 'Aversion', 'Annoyance', 'Anger', 
 #              'Sensitivity', 'Sadness', 'Disquietment', 'Fear', 'Pain', 'Suffering']
 
-emotions = ['Peace','Confidence', 'Happiness','Doubt/Confusion', 'Fatigue', 'Embarrassment', 'Anger', 'Sadness', 'Fear', 'Pain']
-
-# f = pd.read_csv('./emotic_pre/original_train.csv', usecols=['Index','Folder','Filename','Categorical_Labels'])
-
+emotions = ['Peace', 'Confidence', 'Happiness','Doubt/Confusion', 'Fatigue', 'Embarrassment', 'Anger', 'Sadness', 'Fear', 'Pain']
 
 
 face_det1 = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -24,21 +22,21 @@ face_det2 = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 face_det3 = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
 face_det4 = cv2.CascadeClassifier('haarcascade_frontalface_alt_tree.xml')
 
-def find_faces(file):
+def find_faces(emotic):
     
     
-    f = pd.read_csv(file,usecols=['Index','Folder','Filename','Categorical_Labels'])
+    f = pd.read_csv(emotic,usecols=['Index','Folder','Filename','Categorical_Labels'])
     
     images = len(f.index)
     
     index = 0
 
-    X = []
-    Y = []
+    X = [] # Processed Images
+    Y = [] # Matching emotions for Image
     
     for image in tqdm(range(images), desc='Loading...'):
 
-        # X - image Processor
+        # Find the face
 
         frame = cv2.imread('./emotic/{}'.format(f['Folder'][image]) +'/{}'.format(f['Filename'][image]))
         grayscale = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -57,13 +55,13 @@ def find_faces(file):
             features = face4
         else:
             features = ''
-        for (x, y, w, h) in features:
-            grayscale = grayscale[y:y+h, x:x+w]
+        for (x, y, w, h) in features: # Convert image to grayscale
+            grayscale = grayscale[y:y+h, x:x+w] # Cut image to just face
             try:
-                resized_image = cv2.resize(grayscale, (28, 28))
+                resized_image = cv2.resize(grayscale, (28, 28)) # Resize for consistant images
                 for emotion in f['Categorical_Labels'][image].strip('][').split(', '):
                     emotion = emotion.replace("'","")
-                    if emotion in emotions:
+                    if emotion in emotions: # Checking if one of the emotions is in the smaller list of emotions we created
                         X.append(resized_image)
                         Y.append(emotion)
                     else:

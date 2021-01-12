@@ -13,6 +13,7 @@ emotions = ['Peace','Confidence', 'Happiness','Doubt/Confusion', 'Fatigue', 'Emb
 
 f = pd.read_csv('emotic_pre/original_train.csv')
 
+# Reduce the data
 X_train, Y_train = find_faces(pd.read_csv('emotic_pre/original_train.csv')
 X_test, Y_test = find_faces(pd.read_csv('emotic_pre/original_test.csv'))
 
@@ -20,6 +21,11 @@ X_test, Y_test = find_faces(pd.read_csv('emotic_pre/original_test.csv'))
 model = keras.Sequential()
 model.add(keras.layers.Conv2D(16,(3, 3), activation='relu',input_shape=(28,28,1)))
 model.add(keras.layers.MaxPooling2D(2, 2))
+
+
+model.add(keras.layers.Conv2D(32,(3, 3), activation='relu'))
+model.add(keras.layers.MaxPooling2D(2, 2))
+
 model.add(Flatten())
 
 

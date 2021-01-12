@@ -1,6 +1,6 @@
 # How are you feeling?
 ---
-In this day and age, cameras are everywhere
+In this day and age, being able to tell how others feel m
 
 # Goal
 
@@ -26,10 +26,12 @@ This dataset is broken up into two different kind of measurments: categorical an
 
 # Classifiers
 ## Haar-Cascade
-I chose to use the Haar-Cascade Classifiers found in OpenCV to be able to reliably pull faces out of different images. The current focus was to make a model that could detect the emotion of the faces given however, further down the road Iwould like to revisit this to replace it with a Random Forest 
+I chose to use the Haar-Cascade Classifiers found in OpenCV to be able to reliably pull faces out of different images. The current focus of the model was just to detect the emotion of the faces given, however, further down the road I would like to revisit this to replace it with 
 
 # CNN
 ![Example_CNN](Images/Face-Recognition-CNN-Architecture.png)
+
+The example above is purely for explanation purposes of how the model works and not representative of the exact numbers or layers.
 
 # Results
 ![Image](accuracy.png)
