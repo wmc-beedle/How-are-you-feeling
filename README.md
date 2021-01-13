@@ -1,6 +1,6 @@
 # How are you feeling?
 ---
-In this day and age, being able to tell how others feel m
+In this day and age, AI
 
 # Goal
 
@@ -23,10 +23,6 @@ Make a model that when fed an image can find a face and estimate as to what emot
 This dataset is broken up into two different kind of measurments: categorical and continuous. For our purposes at this moment, we will just need a subset of the categorical emotions.
 
 
-
-# Classifiers
-## Haar-Cascade
-I chose to use the Haar-Cascade Classifiers found in OpenCV to be able to reliably pull faces out of different images. The current focus of the model was just to detect the emotion of the faces given, however, further down the road I would like to revisit this to replace it with 
 
 # CNN
 ![Example_CNN](Images/Face-Recognition-CNN-Architecture.png)
