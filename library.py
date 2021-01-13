@@ -20,7 +20,10 @@ emotions = {'Peace':0, 'Affection':1, 'Esteem':2, 'Anticipation':3, 'Engagement'
 genders = {'Female':0,'Male':1}
 
 def emotion2int(emotion):
-    val = emotions[emotion]
+    lst = []
+    for emot in [emotion].strip('][').split(', '):
+                    emot = emotion.replace("'","")
+    val = emotions[emot]
     return val
 
 def gender2int(gender):
@@ -50,9 +53,9 @@ def get_photo(file, idx):
 
 
 def make_numeric(file, idx):
-    BB = file.iloc[idx, 4]
-    Labels = file.iloc[idx, 5]
-    Gender = file.iloc[idx, 7]
+    BB = file.iloc[idx, 3]
+    Labels = emotion2int(file.iloc[idx, 5])
+    Gender = gender2int(file.iloc[idx, 7])
     Age = file.iloc[idx, 8]
     num_list = np.array([BB,Labels,Gender,Age])
     return num_list
@@ -61,8 +64,8 @@ def featurize(train_file, test_file):
     train = pd.read_csv(train_file)
     test = pd.read_csv(test_file)
     
-    X = pd.DataFrame([])
-    Y = pd.DataFrame([])
+    X = []
+    Y = []
 
     # X_test = np.array([])
     # Y_test = np.array([])
@@ -84,11 +87,6 @@ def featurize(train_file, test_file):
         except:
             pass
     print('Loading data done!')
-
+    X = np.array(X)
+    Y = np.array(Y)
     return X, Y
-
-train_file = 'Data/emotic_pre/train.csv'
-test_file = 'Data/emotic_pre/test.csv'
-X, Y = featurize(train_file,test_file)
-
-print(X.shape, Y.shape)
