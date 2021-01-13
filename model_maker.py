@@ -27,20 +27,20 @@ X, Y = featurize(train_file,test_file)
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3)
 
 model = Sequential()
-model.add(Conv2D(16,(3, 3), activation='relu',input_shape=(48,48,1)))
-model.add(MaxPooling2D(2, 2))
-
-model.add(Conv2D(32,(3, 3), activation='relu'))
+model.add(Conv2D(32,(3, 3), activation='relu',input_shape=(48,48,1)))
 model.add(MaxPooling2D(2, 2))
 
 model.add(Conv2D(64,(3, 3), activation='relu'))
 model.add(MaxPooling2D(2, 2))
 
-model.add(Conv2D(64,(3, 3), activation='relu'))
+model.add(Conv2D(128,(3, 3), activation='relu'))
+model.add(MaxPooling2D(2, 2))
+
+model.add(Conv2D(256,(3, 3), activation='relu'))
 model.add(MaxPooling2D(2, 2))
 
 model.add(Flatten())
-model.add(keras.layers.Dense(4))
+model.add(Dense(4))
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
