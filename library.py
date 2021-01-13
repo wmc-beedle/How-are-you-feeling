@@ -4,6 +4,7 @@ import os
 import cv2
 import ast 
 from tqdm import tqdm
+import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
@@ -42,7 +43,7 @@ def get_photo(file, idx):
     filename = file.iloc[idx, 2]
     cwd = os.getcwd() + '/Data'
 
-    img = image.load_img(f'{cwd}/emotic/{folder}/{filename}', target_size=(48,48,1), color_mode=grayscale)
+    img = image.load_img(f'{cwd}/emotic/{folder}/{filename}', target_size=(48,48,1), grayscale=True)
     img = image.img_to_array(img)
     img = img/255.0   
     return img
@@ -60,8 +61,8 @@ def featurize(train_file, test_file):
     train = pd.read_csv(train_file)
     test = pd.read_csv(test_file)
     
-    X_train = np.array([])
-    Y_train = np.array([])
+    X = pd.DataFrame([])
+    Y = pd.DataFrame([])
 
     # X_test = np.array([])
     # Y_test = np.array([])
@@ -69,17 +70,25 @@ def featurize(train_file, test_file):
     for idx in tqdm(range(len(train)), desc='Loading training data...'):
         try:
             img_train = get_photo(train,idx)
-            X_train.append(img_train)
-            Y_train.append(make_numeric(train,idx))
+            X.append(img_train)
+            Y.append(make_numeric(train,idx))
         except:
             pass
     for idx in tqdm(range(len(test)), desc='Loading testing data...'):
         try:
             img_test = get_photo(test,idx)
-            X_test.append(img_test)
-            Y_train.append(make_numeric(test,idx))
+            # X_test.append(img_test)
+            # Y_test.append(make_numeric(test,idx))
+            X.append(img_test)
+            Y.append(make_numeric(test,idx))
         except:
             pass
     print('Loading data done!')
 
-    return X_train, Y_train, X_test, Y_test
+    return X, Y
+
+train_file = 'Data/emotic_pre/train.csv'
+test_file = 'Data/emotic_pre/test.csv'
+X, Y = featurize(train_file,test_file)
+
+print(X.shape, Y.shape)
