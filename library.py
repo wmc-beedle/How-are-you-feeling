@@ -42,7 +42,7 @@ def get_photo(file, idx):
     filename = file.iloc[idx, 2]
     cwd = os.getcwd() + '/Data'
 
-    img = image.load_img(f'{cwd}/emotic/{folder}/{filename}', target_size=(48,48,1), grayscale=True)
+    img = image.load_img(f'{cwd}/emotic/{folder}/{filename}', target_size=(48,48,1), color_mode=grayscale)
     img = image.img_to_array(img)
     img = img/255.0   
     return img
@@ -57,33 +57,29 @@ def make_numeric(file, idx):
     return num_list
 
 def featurize(train_file, test_file):
-    train = pd.read_csv(train_file, usecols=['Index', 'Folder', 'Filename', 'Image Size'] )
-    test = pd.read_csv(test_file, usecols=['Index', 'Folder', 'Filename', 'Image Size'])
+    train = pd.read_csv(train_file)
+    test = pd.read_csv(test_file)
     
-    X_train = []
-    Y_train = []
+    X_train = np.array([])
+    Y_train = np.array([])
 
-    X_test = []
-    Y_test = []
+    # X_test = np.array([])
+    # Y_test = np.array([])
 
-    Y_train = to_categorical(Y_train['Categorical_Labels'])
-    Y_test = to_categorical(Y_test['Categorical_Labels'])
-
-    for idx in tqdm(range(len(train)), desc='Loading train data...'):
+    for idx in tqdm(range(len(train)), desc='Loading training data...'):
         try:
-            x = get_photo(train,idx)
-            x.append(img)
-            y.append(make_numeric)
+            img_train = get_photo(train,idx)
+            X_train.append(img_train)
+            Y_train.append(make_numeric(train,idx))
         except:
             pass
-    print('Train data done!')
-
-    for idx in tqdm(range(len(test)), desc='Loading test data...'):
+    for idx in tqdm(range(len(test)), desc='Loading testing data...'):
         try:
-            x = get_photo(test,idx)
-            x.append(img)
-            y.append(make_numeric)
+            img_test = get_photo(test,idx)
+            X_test.append(img_test)
+            Y_train.append(make_numeric(test,idx))
         except:
             pass
-    print('Training data done!')
-    return X_train, Y_train, X_test Y_test
+    print('Loading data done!')
+
+    return X_train, Y_train, X_test, Y_test
