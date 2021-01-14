@@ -50,4 +50,6 @@ The emotic dataset will be needed to be downloaded into the "Data" file. From th
 The model for this image had a 48% accuracy and log loss of 1.4. It was run on a subset of the full range of emotions in an attempt to increase accuracy. 
 
 # Next Steps
-Pro
+Follow-up steps would be:
+to make the model functional on all emotions
+make functional with a webcam
