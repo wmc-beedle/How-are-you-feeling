@@ -18,7 +18,10 @@ emotions = {'Peace':0, 'Affection':1, 'Esteem':2, 'Anticipation':3, 'Engagement'
              'Yearning':15, 'Disapproval':16, 'Aversion':17, 'Annoyance':18, 'Anger':19, 
              'Sensitivity':20, 'Sadness':21, 'Disquietment':22, 'Fear':23, 'Pain':24, 'Suffering':25}
 genders = {'Female':0,'Male':1}
+ages = {'Adult':0, 'Teenager':1, 'Kid':2}
 
+
+# Needed to convert Categorical data into Numerical Data
 def emotion2int(emotion):
     lst = []
     for emot in [emotion].strip('][').split(', '):
@@ -28,6 +31,10 @@ def emotion2int(emotion):
 
 def gender2int(gender):
     val = genders[gender]
+    return val
+
+def age2int(age):
+    val = ages[age]
     return val
 
 def int2emotion(int):
@@ -40,7 +47,13 @@ def int2gender(int):
         if int == value:
             return key
 
+def int2gender(int):
+    for key, value in genders.items():
+        if int == value:
+            return key
 
+
+# To Retrieve the photo
 def get_photo(file, idx):
     folder = file.iloc[idx, 1]
     filename = file.iloc[idx, 2]
@@ -60,15 +73,14 @@ def make_numeric(file, idx):
     num_list = np.array([BB,Labels,Gender,Age])
     return num_list
 
+
+# Featurizer
 def featurize(train_file, test_file):
     train = pd.read_csv(train_file)
     test = pd.read_csv(test_file)
     
     X = []
     Y = []
-
-    # X_test = np.array([])
-    # Y_test = np.array([])
 
     for idx in tqdm(range(len(train)), desc='Loading training data...'):
         try:
@@ -80,8 +92,6 @@ def featurize(train_file, test_file):
     for idx in tqdm(range(len(test)), desc='Loading testing data...'):
         try:
             img_test = get_photo(test,idx)
-            # X_test.append(img_test)
-            # Y_test.append(make_numeric(test,idx))
             X.append(img_test)
             Y.append(make_numeric(test,idx))
         except:
