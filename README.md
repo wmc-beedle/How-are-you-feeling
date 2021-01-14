@@ -29,11 +29,13 @@ Through using machine learning algorithm, in this case specifically a convolutio
 To use this particular model you will need to be using the EMOTIC Dataset provided here[http://sunai.uoc.edu/emotic/]. The data provided here can be split into to type: categorical and continuous. This is important particularly for us as using a CNN you will need to deal with difference before inputing it into the CNN. The categorical data are predicted emotion(s), Gender, and Age. While the other two may not be included in this initial model, they are still valuable sources of data that can be used in a future iteration of this model. The cremaining data are BBox(Boundry boxes for where the face in the image is), Negative/Positive, Calm, Active, Dominated/ In Control. As with the Gender and Age data, besides the BB data, the remainder is still valuable and will be put to the side for now. This dataset furthermore already comes in three parts: training, testing, and valuation sets. Each file has 9 columns with the training set having 23,265 rows, testing having 7,202 rows, and validation having 3,314 rows. 
 
 
+![Distribution_of_Data](Images/updated_frequency.png)
+
 # Convolutional Neural Networks (CNN/ConvNet)
 ![Example_CNN](Images/Face-Recognition-CNN-Architecture.png)
 
 *The image above is purely for explanation purposes of how the model works and not representative of the model itself.*
-CNN models are designed to deal particularly with image classification which is the reason we went with this type of algoithym.
+CNN models are designed to deal particularly with image classification which is the reason we went with this type of algoithym. Above is shown the structure as to how a CNN functions.
  
 # Instructions
 
@@ -43,10 +45,11 @@ Before proceeding to the model itself, some pre-processing is in order. The emot
 
 # Results
 ![sad](Images/face_emotion.png)
-This image is an example of our results! The model that made this image had a 48% accuracy which was surprised me with the number of categories we had. It was run on a subset of the full range of emotions in an attempt to increase this accuracy. 
 
-# Next Steps
-Follow-up steps would be:
-Improve the model so that it may accept all the data from the Emotic's dataset
+This image is an example of our results! The model that made this image had a 48% accuracy which was hgiher than expected with using 8 emotional categories(Random chance would have it be 12.5%.). It was run on a subset of the full range of emotions in an attempt to increase this accuracy. 
 
-make functional with a webcam
+# Next Steps:
+## Correct the models current missing files
+## Improve the model so that it may accept all the data from the Emotic's dataset
+## Create a version that works live on a webcam
+
