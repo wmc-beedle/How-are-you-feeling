@@ -46,7 +46,9 @@ Before proceeding to the model itself, some pre-processing is in order. The emot
 # Results
 ![sad](Images/face_emotion.png)
 
-This image is an example of our results! The model that made this image had a 48% accuracy which was hgiher than expected with using 8 emotional categories(Random chance would have it be 12.5%.). It was run on a subset of the full range of emotions in an attempt to increase this accuracy. Overall, we have a precision of 0.6191, accuracy of .4879%, Sensitivity of 0.7091. So our model got the correct emotion about 62%, 
+This image is an example of our results! The model that made this image had a 48% accuracy which was hgiher than expected with using 8 emotional categories(Random chance would have it be 12.5%.). It was run on a subset of the full range of emotions in an attempt to increase this accuracy. Overall, we have a precision of 0.6191, accuracy of .4879%, Sensitivity of 0.7091. So our model got the correct emotion about 62% when it did find a face and 48% overall. Below is shown a heatmap from testing the model.
+
+![heatmap](Images/heatmap.png)
 
 # Next Steps:
 ## Correct the models current missing files

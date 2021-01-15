@@ -8,7 +8,7 @@ from tqdm import tqdm
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
-from library import featurize
+# from library import featurize
 from sklearn.model_selection import train_test_split
 
 # Original Full List of Emotions for future modellin
@@ -18,13 +18,14 @@ from sklearn.model_selection import train_test_split
 #              'Yearning':15, 'Disapproval':16, 'Aversion':17, 'Annoyance':18, 'Anger':19, 
 #              'Sensitivity':20, 'Sadness':21, 'Disquietment':22, 'Fear':23, 'Pain':24, 'Suffering':25}
 
-train_file = 'Data/emotic_pre/train.csv'
-test_file = 'Data/emotic_pre/test.csv'
+train_file = pd.read_csv('Data/emotic_pre/train.csv')
+test_file = pd.read_csv('Data/emotic_pre/test.csv')
+train_file = train_file.reshape[0]
+test_file = test_file.reshape[0]
+# X, Y = featurize(train_file,test_file)#Condensing Train and test set to try to streamline the incorporation into the model 
 
-X, Y = featurize(train_file,test_file)#Condensing Train and test set to try to streamline the incorporation into the model 
 
-
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3) #Splitting the data into train and test splits
+X_train, X_test, Y_train, Y_test = train_test_split(train_file, test_file, test_size=0.3) #Splitting the data into train and test splits
 
 
 # Creating the model
