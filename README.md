@@ -1,4 +1,4 @@
-## This project is to be redone from scratch in the near future
+## _This project is to be redone from scratch in the near future_
 
 # How are you feeling?
 ---
