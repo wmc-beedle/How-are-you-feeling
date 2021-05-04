@@ -1,3 +1,5 @@
+## This project is to be redone from scratch in the near future
+
 # How are you feeling?
 ---
 Guessing what emotion someone is feeling is usually pretty easy for a human to do. How would you feel about guessing at 100?1000?1,000,000? different faces? I am willing to bet that even at those large numbers, most people would be fairly accurate but there is a catch; going through that many faces would most likely take up a lot of time. Even with that caveat though, that information is still very valuable so we are put in a position where machine learning excels: large data crunching to find patterns.
